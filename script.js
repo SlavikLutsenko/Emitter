@@ -1,7 +1,7 @@
 var a = emitter({
     bb: 22
 })
-
+/*
 // подписались на событие, колбек выполнится столько раз сколько событие зафайрится
 a.on('roof-on-fire', function (data) {
    console.log('put the fire')
@@ -30,3 +30,4 @@ a.off('roof-on-fire')
 // файрим еще раз
 // в консоль не пишется ничего
 a.emit('roof-on-fire', { address: '55, Polk st.'})
+*/
