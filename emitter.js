@@ -4,11 +4,11 @@ function emitter(obj){
 	obj.event = new Array();
 	obj.last_id_event = 0;
 
-	obj.addEvent = function (name, call_back, disposable) {
+	obj.addEvent = function (name_event, callback, disposable) {
 		obj.event.push({
 			id_event: this.last_id_event++,
-			name_event: name,
-			call_back_function: call_back,
+			name_event: name_event,
+			callback_function: callback,
 			disposable: disposable
 		});
 	}
@@ -21,18 +21,18 @@ function emitter(obj){
 		this.last_id_event--;
 	}
 
-	obj.on = function (name_event, call_back) {
-		this.addEvent(name_event, call_back, false);
+	obj.on = function (name_event, callback) {
+		this.addEvent(name_event, callback, false);
 	}
 
-	obj.one = function (name_event, call_back) {
-		this.addEvent(name_event, call_back, true);
+	obj.one = function (name_event, callback) {
+		this.addEvent(name_event, callback, true);
 	}
 
 	obj.emit = function (name_event, data) {
 		for (var i = 0; i < this.event.length; i++)
 			if(this.event[i].name_event == name_event){
-				this.event[i].call_back_function.call(this, data);
+				this.event[i].callback_function.call(this, data);
 				if(this.event[i].disposable) this.deleteEvent(this.event[i].id_event);
 			}
 	}
